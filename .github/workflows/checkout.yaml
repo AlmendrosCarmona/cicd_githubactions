@@ -1,7 +1,6 @@
 name: Checkout repository and display files
-
 on:
-  workflow_dispatch:
+  [push]
 
 jobs:
   checkout-and-display-files:
