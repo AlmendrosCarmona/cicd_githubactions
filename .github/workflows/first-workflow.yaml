@@ -8,9 +8,19 @@ jobs:
             - name: echo a strinng
               run: echo "Hello World"
             - name: Multilie command
-              run: |
+              run: | # Parallel execution
                 node -v
                 npm -v
-
-
-                
+    parallel-job-macos:
+        runs-on: macos-latest
+        steps:
+            - name: View SW Version
+              run: sw_vers
+    depedent-jobs:
+          runs-on: windows-latest
+          needs: run-shell-commands
+          steps: 
+            - name : echo a string
+              run: Wrtie-Output "Hello World"
+            - name: Error step
+              run: doesnotexists
