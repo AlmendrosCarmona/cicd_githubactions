@@ -1,7 +1,7 @@
 name: Checkout repository and display files
 on:
   [push]
-
+  
 jobs:
   checkout-action:
     runs-on: ubuntu-latest
