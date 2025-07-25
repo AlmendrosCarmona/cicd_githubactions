@@ -24,4 +24,4 @@ jobs:
           git checkout origin/main
 
       - name: List files after checkout
-        run: ls -la
+        run: ls -a
