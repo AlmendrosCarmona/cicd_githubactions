@@ -1,0 +1,27 @@
+name: Checkout repository and display files
+
+on:
+  workflow_dispatch:
+
+jobs:
+  checkout-and-display-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List files before checkout
+        run: ls -la
+
+      - name: Checkout repository using git
+        env:
+          GH_ACTOR: ${{ github.actor }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git init
+          git config --global user.name "$GH_ACTOR"
+          git config --global user.email "$GH_ACTOR@users.noreply.github.com"
+          git remote add origin https://$GH_ACTOR:$GH_TOKEN@github.com/$GITHUB_REPOSITORY.git
+          echo $GITHUB_REPOSITORY
+          git fetch origin
+          git checkout origin/main
+
+      - name: List files after checkout
+        run: ls -la
