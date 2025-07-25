@@ -3,9 +3,17 @@ name: working dirs & shells
 on: 
   push:
 
+defaults: 
+    run:
+        shell: bash
+        # working-directory: de/ed
+
 jobs:
   display-wd-info:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
     steps:
       - name: Display Working directory and List files
         run: |
@@ -14,8 +22,14 @@ jobs:
           echo $GITHUB_SHA
           echo $GITHUB_REPOSITORY
           echo $GITHUB_WORKSPACE
+      - name: Change working Dir
+        working-directory: /home/runner
+        run: pwd
   display-wd-info-windows:
     runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
     steps:
       - name: Display Working directory and List files
         run: |
@@ -24,3 +38,8 @@ jobs:
           echo %GITHUB_SHA%
           echo %GITHUB_REPOSITORY%
           echo %GITHUB_WORKSPACE%
+      - name: Pytho Shell
+        shell: python
+        run: |
+            import platform
+            print(platform.processor())
